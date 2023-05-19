@@ -50,10 +50,6 @@ class MyHomePage extends ConsumerWidget {
               Text(
                 'You have pushed the button this many times:',
               ),
-              Text(
-                '${mainModel.counter}',
-                style: Theme.of(context).textTheme.headline4,
-              ),
             ],
           ),
         ),
