@@ -1,4 +1,4 @@
-# udemy_flutter_sns
+# flutter_sns
 
 A new Flutter project.
 
