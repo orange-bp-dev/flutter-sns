@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:udemy_flutter_sns/main_model.dart';
+import 'package:udemy_flutter_sns/models/main_model.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -39,19 +39,41 @@ class MyHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final MainModel mainModel = ref.watch(mainProvider);
+    final TextEditingController emailController =
+        TextEditingController(text: mainModel.email);
+    final TextEditingController passwordController =
+        TextEditingController(text: mainModel.password);
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
+        body: Column(
+          children: [
+            TextFormField(
+              onChanged: (value) => mainModel.email = value,
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
+            ),
+            TextFormField(
+              onChanged: (value) => mainModel.password = value,
+              keyboardType: TextInputType.visiblePassword,
+              controller: passwordController,
+              obscureText: mainModel.isObscure,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  icon: Icon(mainModel.isObscure
+                      ? Icons.visibility_off
+                      : Icons.visibility),
+                  onPressed: () => mainModel.toggleIsObscure(),
+                ),
               ),
-            ],
-          ),
+            ),
+            Center(
+              child: mainModel.currentUser == null
+                  ? Text("null")
+                  : Text("not null"),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async => await mainModel.createUser(context: context),
