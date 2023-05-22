@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:udemy_flutter_sns/constants/strings.dart';
+import 'package:udemy_flutter_sns/details/rouded_textfield.dart';
+import 'package:udemy_flutter_sns/details/rounded_button.dart';
+import 'package:udemy_flutter_sns/details/rounded_password_field.dart';
 import '../models/signup_model.dart';
 
 class SignupPage extends ConsumerWidget {
@@ -12,41 +16,36 @@ class SignupPage extends ConsumerWidget {
     final TextEditingController passwordController =
         TextEditingController(text: signupModel.password);
     return Scaffold(
-        appBar: AppBar(
-          title: Text("signup"),
-        ),
-        body: Column(
-          children: [
-            TextFormField(
-              onChanged: (value) => signupModel.email = value,
-              keyboardType: TextInputType.emailAddress,
-              controller: emailController,
-            ),
-            TextFormField(
-              onChanged: (value) => signupModel.password = value,
-              keyboardType: TextInputType.visiblePassword,
-              controller: passwordController,
-              obscureText: signupModel.isObscure,
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                  icon: Icon(signupModel.isObscure
-                      ? Icons.visibility_off
-                      : Icons.visibility),
-                  onPressed: () => signupModel.toggleIsObscure(),
-                ),
-              ),
-            ),
-            Center(
-              child: signupModel.currentUser == null
-                  ? Text("null")
-                  : Text("not null"),
-            ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async => await signupModel.createUser(context: context),
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        ));
+      appBar: AppBar(
+        title: Text(signupText),
+      ),
+      body: Column(
+        children: [
+          RoundedTextField(
+            onChanged: (value) => signupModel.email = value,
+            keyboardType: TextInputType.emailAddress,
+            controller: emailController,
+            color: Colors.white,
+            borderColor: Colors.black,
+            hintText: mailAddressText,
+          ),
+          RoundedPasswordField(
+            color: Colors.white,
+            borderColor: Colors.black,
+            onChanged: (value) => signupModel.password = value,
+            passwordEditingController: passwordController,
+            isObsture: signupModel.isObscure,
+            toggleIsObscure: signupModel.toggleIsObscure,
+          ),
+          RoundedButton(
+            onPressed: () async =>
+                await signupModel.createUser(context: context),
+            widthRate: 0.85,
+            color: Colors.red,
+            text: signupText,
+          )
+        ],
+      ),
+    );
   }
 }
