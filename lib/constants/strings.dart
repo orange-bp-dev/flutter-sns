@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 // titles
 const String appTitle = "SNS";
 const String signupTitle = "新規登録";
@@ -18,3 +20,12 @@ const String loadingText = "Loading";
 const String homeText = "Home";
 const String searchText = "Search";
 const String profileText = "Profile";
+
+const String cropperTitle = "編集";
+
+String returnUuidV4() {
+  const Uuid uuid = Uuid();
+  return uuid.v4();
+}
+
+String returnJpgFileName() => "${returnUuidV4()}.jpg";
