@@ -26,6 +26,8 @@ mixin _$FirestoreUser {
   String get userName => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get userImageURL => throw _privateConstructorUsedError;
+  int get followerCount => throw _privateConstructorUsedError;
+  int get followingCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +47,9 @@ abstract class $FirestoreUserCopyWith<$Res> {
       dynamic updatedAt,
       String userName,
       String uid,
-      String userImageURL});
+      String userImageURL,
+      int followerCount,
+      int followingCount});
 }
 
 /// @nodoc
@@ -67,6 +71,8 @@ class _$FirestoreUserCopyWithImpl<$Res, $Val extends FirestoreUser>
     Object? userName = null,
     Object? uid = null,
     Object? userImageURL = null,
+    Object? followerCount = null,
+    Object? followingCount = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -93,6 +99,14 @@ class _$FirestoreUserCopyWithImpl<$Res, $Val extends FirestoreUser>
           ? _value.userImageURL
           : userImageURL // ignore: cast_nullable_to_non_nullable
               as String,
+      followerCount: null == followerCount
+          ? _value.followerCount
+          : followerCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      followingCount: null == followingCount
+          ? _value.followingCount
+          : followingCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -111,7 +125,9 @@ abstract class _$$_FirestoreUserCopyWith<$Res>
       dynamic updatedAt,
       String userName,
       String uid,
-      String userImageURL});
+      String userImageURL,
+      int followerCount,
+      int followingCount});
 }
 
 /// @nodoc
@@ -131,6 +147,8 @@ class __$$_FirestoreUserCopyWithImpl<$Res>
     Object? userName = null,
     Object? uid = null,
     Object? userImageURL = null,
+    Object? followerCount = null,
+    Object? followingCount = null,
   }) {
     return _then(_$_FirestoreUser(
       email: null == email
@@ -157,6 +175,14 @@ class __$$_FirestoreUserCopyWithImpl<$Res>
           ? _value.userImageURL
           : userImageURL // ignore: cast_nullable_to_non_nullable
               as String,
+      followerCount: null == followerCount
+          ? _value.followerCount
+          : followerCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      followingCount: null == followingCount
+          ? _value.followingCount
+          : followingCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -170,7 +196,9 @@ class _$_FirestoreUser implements _FirestoreUser {
       required this.updatedAt,
       required this.userName,
       required this.uid,
-      required this.userImageURL});
+      required this.userImageURL,
+      required this.followerCount,
+      required this.followingCount});
 
   factory _$_FirestoreUser.fromJson(Map<String, dynamic> json) =>
       _$$_FirestoreUserFromJson(json);
@@ -187,10 +215,14 @@ class _$_FirestoreUser implements _FirestoreUser {
   final String uid;
   @override
   final String userImageURL;
+  @override
+  final int followerCount;
+  @override
+  final int followingCount;
 
   @override
   String toString() {
-    return 'FirestoreUser(email: $email, createdAt: $createdAt, updatedAt: $updatedAt, userName: $userName, uid: $uid, userImageURL: $userImageURL)';
+    return 'FirestoreUser(email: $email, createdAt: $createdAt, updatedAt: $updatedAt, userName: $userName, uid: $uid, userImageURL: $userImageURL, followerCount: $followerCount, followingCount: $followingCount)';
   }
 
   @override
@@ -205,7 +237,11 @@ class _$_FirestoreUser implements _FirestoreUser {
                 other.userName == userName) &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.userImageURL, userImageURL) ||
-                other.userImageURL == userImageURL));
+                other.userImageURL == userImageURL) &&
+            (identical(other.followerCount, followerCount) ||
+                other.followerCount == followerCount) &&
+            (identical(other.followingCount, followingCount) ||
+                other.followingCount == followingCount));
   }
 
   @JsonKey(ignore: true)
@@ -217,7 +253,9 @@ class _$_FirestoreUser implements _FirestoreUser {
       const DeepCollectionEquality().hash(updatedAt),
       userName,
       uid,
-      userImageURL);
+      userImageURL,
+      followerCount,
+      followingCount);
 
   @JsonKey(ignore: true)
   @override
@@ -240,7 +278,9 @@ abstract class _FirestoreUser implements FirestoreUser {
       required final dynamic updatedAt,
       required final String userName,
       required final String uid,
-      required final String userImageURL}) = _$_FirestoreUser;
+      required final String userImageURL,
+      required final int followerCount,
+      required final int followingCount}) = _$_FirestoreUser;
 
   factory _FirestoreUser.fromJson(Map<String, dynamic> json) =
       _$_FirestoreUser.fromJson;
@@ -257,6 +297,10 @@ abstract class _FirestoreUser implements FirestoreUser {
   String get uid;
   @override
   String get userImageURL;
+  @override
+  int get followerCount;
+  @override
+  int get followingCount;
   @override
   @JsonKey(ignore: true)
   _$$_FirestoreUserCopyWith<_$_FirestoreUser> get copyWith =>

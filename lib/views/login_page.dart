@@ -5,8 +5,7 @@ import 'package:udemy_flutter_sns/details/rouded_textfield.dart';
 import 'package:udemy_flutter_sns/details/rounded_button.dart';
 import 'package:udemy_flutter_sns/details/rounded_password_field.dart';
 import 'package:udemy_flutter_sns/models/login_model.dart';
-import 'package:udemy_flutter_sns/models/main_model.dart';
-import '../models/signup_model.dart';
+import 'package:udemy_flutter_sns/constants/routes.dart' as routes;
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -45,7 +44,10 @@ class LoginPage extends ConsumerWidget {
             widthRate: 0.85,
             color: Colors.green,
             text: loginText,
-          )
+          ),
+          TextButton(
+              onPressed: () => routes.toSignupPage(context: context),
+              child: Text(noAccountMsg))
         ],
       ),
     );

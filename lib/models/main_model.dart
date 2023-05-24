@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:udemy_flutter_sns/constants/strings.dart';
 import 'package:udemy_flutter_sns/domain/firestore_user/firestore_user.dart';
+import 'package:udemy_flutter_sns/constants/routes.dart' as routes;
 
 final mainProvider = ChangeNotifierProvider<MainModel>((ref) => MainModel());
 
@@ -12,6 +13,7 @@ class MainModel extends ChangeNotifier {
   User? currentUser = null;
   late DocumentSnapshot<Map<String, dynamic>> currentUserDoc;
   late FirestoreUser firestoreUser;
+  List<String> followingUids = [];
 
   MainModel() {
     init();
@@ -51,6 +53,7 @@ class MainModel extends ChangeNotifier {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("ログアウトしました")));
       setCurrentUser();
+      routes.toLoginPage(context: context);
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message!)));

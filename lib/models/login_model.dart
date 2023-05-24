@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:udemy_flutter_sns/constants/routes.dart' as routes;
-import 'package:udemy_flutter_sns/models/main_model.dart';
 
 final loginProvider = ChangeNotifierProvider((ref) => LoginModel());
 
